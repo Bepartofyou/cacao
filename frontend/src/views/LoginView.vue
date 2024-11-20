@@ -16,15 +16,15 @@
       </a-form-item>
 
       <a-form-item name="password" :rules="[{ required: true, message: 'Input your password' }]">
-        <a-input type="password" autocomplete="new-password" v-model:value="loginState.password">
+        <a-input-password type="password" autocomplete="new-password" v-model:value="loginState.password">
           <template #prefix>
             <lock-outlined class="site-form-item-icon" />
           </template>
-        </a-input>
+        </a-input-password>
       </a-form-item>
 
       <a-form-item>
-        <a-button type="primary" html-type="submit" class="login-form-button"> Log in </a-button>
+        <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button"> Log in </a-button>
         Or
         <a href="/register">register now</a>
       </a-form-item>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
@@ -59,6 +59,10 @@ const userLogin = async (username, password) => {
 const onFinish = (values) => {
   userLogin(values.username, values.password)
 }
+
+const disabled = computed(() => {
+  return !(loginState.username && loginState.password);
+})
 </script>
 
 <style scoped>
