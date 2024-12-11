@@ -3,9 +3,11 @@ package logger
 import (
 	"bytes"
 	"fmt"
+	"path"
 
 	"github.com/lanthora/cacao/argp"
 	"github.com/sirupsen/logrus"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func init() {
@@ -18,6 +20,16 @@ func init() {
 		logger.SetLevel(logrus.DebugLevel)
 	case "info":
 		logger.SetLevel(logrus.InfoLevel)
+	}
+
+	if argp.Get("logfile", "disable") == "enable" {
+		logger.SetOutput(&lumberjack.Logger{
+			Filename:   path.Join(argp.Get("storage", "."), "logs/cacao.log"),
+			MaxSize:    10,    // 每个日志文件最大尺寸（M）
+			MaxBackups: 5,     // 保留旧文件的最大个数
+			MaxAge:     3,     // 保留旧文件的最大天数
+			Compress:   true,  // 是否压缩/归档旧文件
+		})
 	}
 
 	Info("loglevel=[%v]", logger.GetLevel().String())
