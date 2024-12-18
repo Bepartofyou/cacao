@@ -69,6 +69,18 @@ const deviceColumns = computed(() => [
     sorter: (a, b) => compareDottedDecimal(a.ip, b.ip)
   },
   {
+    title: t('device.columns.eip'),
+    dataIndex: 'eip',
+    key: 'eip',
+    align: 'center'
+  },
+  {
+    title: t('device.columns.epr'),
+    dataIndex: 'epr',
+    key: 'epr',
+    align: 'center'
+  },
+  {
     title: t('device.columns.country'),
     dataIndex: 'country',
     key: 'country',
@@ -87,6 +99,12 @@ const deviceColumns = computed(() => [
       }
       return tmp
     }
+  },
+  {
+    title: t('device.columns.vmac'),
+    dataIndex: 'vmac',
+    key: 'vmac',
+    align: 'center'
   },
   {
     title: t('device.columns.rx'),

@@ -14,7 +14,10 @@ func DeviceShow(c *gin.Context) {
 	type devinfo struct {
 		DevID          uint   `json:"devid"`
 		NetID          uint   `json:"netid"`
+		Vmac           string `json:"vmac"`
 		IP             string `json:"ip"`
+		EIP           string `json:"eip"`
+		EPR           string `json:"epr"`
 		Online         bool   `json:"online"`
 		RX             uint64 `json:"rx"`
 		TX             uint64 `json:"tx"`
@@ -31,7 +34,10 @@ func DeviceShow(c *gin.Context) {
 		response = append(response, devinfo{
 			DevID:          d.ID,
 			NetID:          d.NetID,
+			Vmac:           d.VMac,
 			IP:             d.IP,
+			EIP:            d.EIP,
+			EPR:            d.EPR,
 			Online:         d.Online,
 			RX:             d.RX,
 			TX:             d.TX,
