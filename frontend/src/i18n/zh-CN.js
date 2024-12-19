@@ -40,7 +40,7 @@ export default {
         password: '密码',
         dhcp: 'DHCP',
         broadcast: '广播',
-        lease: '租期',
+        lease: '租期(小时)',
         action: '操作',
         enable: '启用',
         disable: '禁用',

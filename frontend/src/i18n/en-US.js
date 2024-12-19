@@ -40,7 +40,7 @@ export default {
         password: 'Password',
         dhcp: 'DHCP',
         broadcast: 'Broadcast',
-        lease: 'Lease',
+        lease: 'Lease(hours)',
         action: 'Action',
         enable: 'Enable',
         disable: 'Disable',
