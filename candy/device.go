@@ -16,7 +16,8 @@ func autoCleanInactiveDevice() {
 		if n.Lease > 0 {
 			devices := model.GetDevicesByNetID(n.ID)
 			for _, d := range devices {
-				if d.UpdatedAt.AddDate(0, 0, int(n.Lease)).Before(time.Now()) {
+				// if d.UpdatedAt.AddDate(0, 0, int(n.Lease)).Before(time.Now()) {
+				if d.UpdatedAt.Add(time.Duration(n.Lease) * time.Hour).Before(time.Now()) {
 					d.Delete()
 				}
 			}
