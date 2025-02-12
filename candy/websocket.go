@@ -192,6 +192,12 @@ func (ws *candysocket) handleAuthMessage(buffer []byte) error {
 	db := storage.Get()
 	db.Where(ws.dev.model).First(ws.dev.model)
 	ws.dev.model.IP = uint32ToStrIp(message.IP)
+
+	addr, err := net.ResolveTCPAddr("tcp", ws.conn.RemoteAddr().String())
+	if err == nil {
+		ws.dev.model.EIP = addr.IP.String()
+		ws.dev.model.EPR = ws.conn.RemoteAddr().Network()
+	}
 	ws.dev.model.Online = true
 	ws.dev.model.Country, ws.dev.model.Region = GetLocation(net.ParseIP(ws.ctx.ClientIP()))
 	ws.dev.model.Save()

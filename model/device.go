@@ -20,6 +20,8 @@ type Device struct {
 	NetID    uint
 	VMac     string
 	IP       string
+	EIP      string
+	EPR      string
 	Online   bool
 	RX       uint64
 	TX       uint64
